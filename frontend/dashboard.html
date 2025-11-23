@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Your Todos</h2>
+
+        <input id="newTodo" type="text" placeholder="New Todo..." />
+        <button onclick="addTodo()">Add</button>
+
+        <ul id="todoList"></ul>
+
+        <button onclick="logout()">Logout</button>
+
+    </div>
+    <script>
+        const BASE_URL = "http://localhost:3000";
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            window.location.href = "auth.html";
+        }
+
+        async function loadTodos() {
+            const res = await fetch(BASE_URL + "/todos", {
+                headers: { "Authorization": token }
+            });
+
+            const data = await res.json();
+            renderTodos(data.todos);
+        }
+
+        function renderTodos(todos) {
+            const ul = document.getElementById("todoList");
+            ul.innerHTML = "";
+
+            todos.forEach(todo => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+          ${todo.title}
+          <button onclick="deleteTodo(${todo.id})">Delete</button>
+        `;
+                ul.appendChild(li);
+            });
+        }
+
+        async function addTodo() {
+            const title = document.getElementById("newTodo").value;
+
+            const res = await fetch(BASE_URL + "/todo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                },
+                body: JSON.stringify({ title })
+            });
+
+            document.getElementById("newTodo").value = "";
+            loadTodos();
+        }
+
+        async function deleteTodo(id) {
+            const res = await fetch(BASE_URL + `/todo/${id}`, {
+                method: "DELETE",
+                headers: { "Authorization": token }
+            });
+
+            loadTodos();
+        }
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location.href = "auth.html";
+        }
+
+        loadTodos();
+    </script>
+</body>
+
+</html>

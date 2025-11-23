@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Best Todo App</h1>
+        <hr>
+        <h1>Create Your Todo</h1>
+
+        <button onclick="goToAuth()">Start Here...</button>
+        <button onclick="getAllUsers()">All Users</button>
+
+        <h2>Users:</h2>
+        <div id="usersList"></div>
+    </div>
+
+    <script>
+        const BASE_URL = "http://localhost:3000";
+
+        function goToAuth() {
+            window.location.href = "auth.html"
+        }
+
+        async function getAllUsers() {
+            const res = await fetch(BASE_URL + "/users")
+            const data = await res.json();
+
+            document.getElementById("usersList").innerHTML = "";
+
+            data.forEach(user => {
+                const p = document.createElement("p");
+                p.innerText = user;
+                document.getElementById("usersList").appendChild(p)
+            })
+
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "username": "testuser",
+    "password": "$2b$10$85CCJ5uN611n2/E4.BM3z.eLCAEv0uwD3QWwgdQUwqvhu0.p0DrcO",
+    "todos": [
+      {
+        "id": 1,
+        "title": "fuck"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "username": "Joshua",
+    "password": "$2b$10$ItHBXpjBbUZhcHjbZxF1YuaID9qNFGUuCkxNmnxzeOKpeAHCaKQNS",
+    "todos": [
+      {
+        "id": 1,
+        "title": "Go to gyn"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "username": "Zafar",
+    "password": "$2b$10$yydfHXLttaWDX.Do4py8su7kRyKUghu0MWopF3d0TM2tmZFeSZ5lK",
+    "todos": [
+      {
+        "id": 1,
+        "title": "Make Backend"
+      }
+    ]
+  }
+]

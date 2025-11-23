@@ -1,0 +1,90 @@
+{
+  "info": {
+    "name": "TODO App - File System",
+    "_postman_id": "a1c9e55e-9b85-4d1d-af65-f0b727cc83a6",
+    "description": "Postman Collection for TODO App using File System (users.txt)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Signup",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"123456\"\n}"
+        },
+        "url": "{{base_url}}/signup"
+      }
+    },
+    {
+      "name": "Signin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"123456\"\n}"
+        },
+        "url": "{{base_url}}/signin"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let data = pm.response.json();",
+              "if (data.token) {",
+              "    pm.environment.set(\"token\", data.token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Add Todo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Go to gym\"\n}"
+        },
+        "url": "{{base_url}}/todo"
+      }
+    },
+    {
+      "name": "Get Todos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}"
+          }
+        ],
+        "url": "{{base_url}}/todos"
+      }
+    },
+    {
+      "name": "Delete Todo",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{token}}"
+          }
+        ],
+        "url": "{{base_url}}/todo/REPLACE_TODO_ID"
+      }
+    }
+  ]
+}
