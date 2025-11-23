@@ -1,4 +1,4 @@
-./node_modules
-./users.txt
+node_modules/
+users.txt
 .env
 .DS_Store
