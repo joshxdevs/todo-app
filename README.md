@@ -47,10 +47,10 @@ npm install
 
 
 ### 2️⃣ Create your `.env` file
-
+```
 JWT_SECRET=your_secret_here
 PORT=3000
-
+```
 (You can copy from `.env.example`)
 
 ---
