@@ -28,15 +28,14 @@ This project demonstrates beginner-friendly full-stack development with clean AP
 ---
 
 ## 📦 Project Structure
-
+```
 todo-app/
 backend/
 frontend/
 README.md
 .gitignore
 .env
-
-
+```
 ---
 
 ## ▶️ Running the Project
